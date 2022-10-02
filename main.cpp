@@ -39,10 +39,9 @@ int main()
     snd_pcm_uframes_t wirteReqSize = sizeof(buffer) / 2 / 2;
     for(int i = 0; i < 16; i++)
     {
-        snd_pcm_sframes_t frames = 
-            snd_pcm_writei(handle, 
-                           buffer, 
-                           wirteReqSize);  // frame 단위
+        snd_pcm_sframes_t frames = snd_pcm_writei(handle, 
+                                                  buffer, 
+                                                  wirteReqSize);  // frame 단위
         if(frames < 0)
         {
             frames = snd_pcm_recover(handle, frames, 0);

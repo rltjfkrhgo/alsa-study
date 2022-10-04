@@ -9,7 +9,10 @@ int main()
 
     // open pcm device
     snd_pcm_t* handle = nullptr;
-    if((err = snd_pcm_open(&handle, "default", SND_PCM_STREAM_PLAYBACK, 0)) < 0)
+    if((err = snd_pcm_open(&handle, 
+                           "default",  // pcm device name
+                           SND_PCM_STREAM_PLAYBACK, 
+                           0)) < 0)
     {
         std::cerr << "snd_pcm_open() error: " << snd_strerror(err) << std::endl;
         return -1;
@@ -17,7 +20,7 @@ int main()
 
     // set parameters
     if((err = snd_pcm_set_params(handle, 
-                                 SND_PCM_FORMAT_S16_LE,  // sample format
+                                 SND_PCM_FORMAT_S16_LE,  // 16bits/sample, little endian
                                  SND_PCM_ACCESS_RW_INTERLEAVED, 
                                  2,      // channel
                                  48000,  // sample rate
